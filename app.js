@@ -56,7 +56,7 @@ function mostrarResultados() {
     }
   }
 }
-// solicito ingrese la compra que desea y suma los totales
+
 while (true) {
   compra = prompt(`seleccione lo que quiera comprar:
 1 para zapato
