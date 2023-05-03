@@ -1,7 +1,12 @@
-const zapato = 10000;
-const borcego = 25000;
-const sandalia = 5000;
-const mocasin = 13000;
+const productos = [
+  { nombre: "zapato", precio: 10000 },
+  { nombre: "borcego", precio: 25000 },
+  { nombre: "sandalia", precio: 5000 },
+  { nombre: "mocasin", precio: 13000 },
+];
+
+let carrito = []
+
 let sumartotal = 0;
 let sumaZapato = 0;
 let sumaBorcego = 0;
@@ -11,7 +16,6 @@ let medioDePago = 0;
 let compra = 0;
 let precio = 0;
 
-
 function mostrarResultados() {
   alert(`usted ha comprado:
   ${sumaZapato} zapatos
@@ -19,6 +23,8 @@ function mostrarResultados() {
   ${sumaSandalia} sandalias
   ${sumaMocasin} mocasines
   el total de la compra es de ${sumartotal} pesos.`);
+
+  // Medios de pago //
 
   while (sumartotal != 0) {
     medioDePago = prompt(`
@@ -35,7 +41,7 @@ function mostrarResultados() {
       switch (medioDePago) {
         case "1":
           if (sumartotal >= 30000) {
-            sumartotal = (sumartotal * 0.9).toFixed(2);
+            sumartotal = (sumartotal * 0.9).toFixed(1);
             alert(`Tiene un 10% de descuento en su compra y debera pagar ${sumartotal} pesos.
             Que tenga un buen dia!`);
           } else {
@@ -44,7 +50,7 @@ function mostrarResultados() {
           }
           break;
         case "2":
-          sumartotal = (sumartotal / 3).toFixed(2);
+          sumartotal = (sumartotal / 3).toFixed(1);
           alert(`Debera pagar 3 cuotas de ${sumartotal} pesos.
           Gracias por su compra!`);
           break;
@@ -57,7 +63,21 @@ function mostrarResultados() {
   }
 }
 
-while (true) {
+let seleccion = prompt("Bienvenido, desea iniciar su compra, si - no");
+
+while (seleccion != "si" && seleccion != "no") {
+  alert("Ingrese si o no");
+  seleccion = prompt("Ingrese si o no");
+}
+if (seleccion == "si") {
+  alert("A continuacion vera nuestra lista de productos");
+  let listadeProductos = productos.map((producto) =>producto.nombre + " " + producto.precio + "$");
+  alert(listadeProductos.join(" / "))
+} else if (seleccion == "no"){
+    alert("Lo esperamos pronto")
+}
+
+while (seleccion !="no") {
   compra = prompt(`seleccione lo que quiera comprar:
 1 para zapato
 2 para borcego
@@ -89,6 +109,8 @@ y "fin" si desea terminar de comprar`);
     continue;
   }
   alert(`el total es : ${sumartotal} pesos.`);
+
 }
+
 
 mostrarResultados();
